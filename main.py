@@ -1,8 +1,6 @@
 import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import spotdl as sp
 from search import search
-import time
 import subprocess
 import glob
 
@@ -40,7 +38,6 @@ class MyServer(BaseHTTPRequestHandler):
             else:
                 download(url)
                 self.wfile.write(bytes(str(glob.glob("*.mp3")).replace("[", "").replace("'", "").replace("]", ""), "utf-8"))
-
 if __name__ == "__main__":
     webServer = HTTPServer((hostName, serverPort), MyServer)
     print("Server started http://%s:%s" % (hostName, serverPort))
@@ -48,7 +45,7 @@ if __name__ == "__main__":
     try:
         webServer.serve_forever()
     except KeyboardInterrupt:
-        pass
+        print("Detected Emergency shutdown")
 
     webServer.server_close()
     print("Server stopped.")
