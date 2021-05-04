@@ -45,7 +45,7 @@ if __name__ == "__main__":
     try:
         webServer.serve_forever()
     except KeyboardInterrupt:
-        print("Detected Emergency shutdown")
+        print("Detected emergency shutdown")
 
     webServer.server_close()
     print("Server stopped.")
